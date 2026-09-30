@@ -1,0 +1,41 @@
+// Design-Tokens: Farben, Schriften, Abstände.
+// Als CSS-Variablen, damit alle Blöcke dieselben Werte nutzen.
+
+:root {
+  // Farben – Wald, Fluss, Sand
+  --forest-900: #10231d;
+  --forest-800: #173129;
+  --forest-700: #1f4136;
+  --river-600: #25645f;
+  --river-500: #2f7a73;
+  --river-100: #dcebe7;
+  --moss-500: #6f8f4e;
+  --sand-100: #f6f2e9;
+  --sand-200: #ece5d6;
+  --sand-300: #ddd3bf;
+  --amber-500: #c98b3c;
+  --amber-600: #ad7430;
+
+  --paper: #fbf9f4;
+  --ink: #16211d;
+  --ink-soft: #3d4a44;
+  --muted: #66746d;
+  --line: rgba(22, 33, 29, .12);
+
+  // Schriften
+  --font-display: 'Fraunces Variable', Georgia, serif;
+  --font-body: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  // Maße
+  --container: 1200px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --radius-sm: 10px;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --header-h: 76px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 35, 29, .06), 0 2px 8px rgba(16, 35, 29, .05);
+  --shadow: 0 2px 6px rgba(16, 35, 29, .06), 0 14px 40px rgba(16, 35, 29, .10);
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
+}

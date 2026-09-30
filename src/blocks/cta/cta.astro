@@ -1,0 +1,28 @@
+---
+import './cta.scss';
+import Icon from '../icon/icon.astro';
+---
+
+<section class="section cta">
+  <div class="container cta__grid">
+    <div class="cta__card cta__card--dark">
+      <Icon name="users" size={32} />
+      <h2>Mitglied werden</h2>
+      <p>
+        An der Nagold wird überwiegend mit der Fliege gefischt. Du bist schon Fliegenfischer oder willst es
+        werden? Wir helfen gern beim Einstieg – schreib uns mit einer kurzen Vorstellung.
+      </p>
+      <a class="btn btn-primary" href="/kontakt/#mitgliedschaft">Kontakt aufnehmen <Icon name="arrow" size={18} /></a>
+    </div>
+
+    <div class="cta__card">
+      <Icon name="ticket" size={32} />
+      <h2>Tageskarten</h2>
+      <p>
+        Gastkarten für das Fliegenfischen in Bad Liebenzell gibt es bei der Tourist-Information –
+        inklusive Genussgutschein für die örtliche Gastronomie.
+      </p>
+      <a class="btn btn-outline" href="/tageskarte/">Infos zu Tageskarten <Icon name="arrow" size={18} /></a>
+    </div>
+  </div>
+</section>

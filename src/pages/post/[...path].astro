@@ -1,0 +1,51 @@
+---
+// /post/ (Liste), /post/page/n/ und /post/<beitrag>/
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../blocks/page-header/page-header.astro';
+import Blog from '../../blocks/blog/blog.astro';
+import Post from '../../blocks/post/post.astro';
+import { getPosts, paginate, type PageInfo, type Post as PostEntry } from '../../lib/site';
+
+type Props =
+  | { kind: 'list'; posts: PostEntry[]; info: PageInfo }
+  | { kind: 'post'; post: PostEntry; prev?: PostEntry; next?: PostEntry };
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return [
+    ...paginate(posts, '/post/').map(({ posts, info }) => ({
+      params: { path: info.current === 1 ? undefined : `page/${info.current}` },
+      props: { kind: 'list' as const, posts, info },
+    })),
+    ...posts.map((post, i) => ({
+      params: { path: post.id },
+      props: { kind: 'post' as const, post, prev: posts[i - 1], next: posts[i + 1] },
+    })),
+  ];
+}
+
+const props = Astro.props as Props;
+---
+
+{props.kind === 'list' && (
+  <Base title="Aktuelles" description="Neuigkeiten vom Fischerverein Bad Liebenzell: Besatz, Hege und Gewässerpflege an Nagold und Stadtsee.">
+    <PageHeader
+      title="Neues vom Wasser"
+      eyebrow="Aktuelles"
+      intro="Besatz, Hege, Gewässeranalysen und Arbeitseinsätze – hier berichten wir, was an Nagold und Stadtsee passiert."
+    />
+    <Blog posts={props.posts} info={props.info} />
+  </Base>
+)}
+
+{props.kind === 'post' && (
+  <Base
+    title={props.post.data.title}
+    description={props.post.data.description}
+    image={props.post.data.image}
+    type="article"
+    published={props.post.data.date}
+  >
+    <Post post={props.post} prev={props.prev} next={props.next} />
+  </Base>
+)}

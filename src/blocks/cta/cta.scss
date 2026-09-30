@@ -1,0 +1,70 @@
+@use '../../styles/mixins' as *;
+
+.cta {
+  &__grid {
+    display: grid;
+    gap: 24px;
+
+    @include md {
+      grid-template-columns: 1.25fr 1fr;
+      gap: 32px;
+    }
+  }
+
+  &__card {
+    position: relative;
+    display: grid;
+    align-content: start;
+    justify-items: start;
+    gap: 16px;
+    overflow: hidden;
+    padding: clamp(32px, 5vw, 56px);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    background: #fff;
+
+    > svg {
+      color: var(--river-500);
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.4vw, 2.5rem);
+    }
+
+    p {
+      max-width: 46ch;
+      color: var(--ink-soft);
+    }
+
+    .btn {
+      margin-top: 8px;
+    }
+
+    &--dark {
+      border: 0;
+      background: var(--forest-800);
+      color: #fff;
+
+      > svg {
+        color: var(--amber-500);
+      }
+
+      p {
+        color: rgba(255, 255, 255, .78);
+      }
+
+      // Wellenlinien als Dekor
+      &::after {
+        content: '';
+        position: absolute;
+        right: -60px;
+        bottom: -60px;
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        background: repeating-radial-gradient(circle, transparent 0 18px, rgba(255, 255, 255, .05) 18px 20px);
+        pointer-events: none;
+      }
+    }
+  }
+}

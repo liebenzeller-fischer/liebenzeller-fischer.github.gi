@@ -1,0 +1,24 @@
+---
+// /tags/, /tags/<name>/ und /tags/<name>/page/n/
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../blocks/page-header/page-header.astro';
+import Blog from '../../blocks/blog/blog.astro';
+import Taxonomy from '../../blocks/taxonomy/taxonomy.astro';
+import { taxonomyPaths, type TaxonomyProps } from '../../lib/taxonomy';
+
+export const getStaticPaths = () => taxonomyPaths('tags');
+const props = Astro.props as TaxonomyProps;
+---
+
+{props.kind === 'index' && (
+  <Base title="Themen">
+    <Taxonomy title="Themen" base="tags" items={props.items} />
+  </Base>
+)}
+
+{props.kind === 'term' && (
+  <Base title={props.name}>
+    <PageHeader title={props.name} eyebrow="Thema" />
+    <Blog posts={props.posts} info={props.info} />
+  </Base>
+)}

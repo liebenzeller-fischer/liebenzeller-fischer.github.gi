@@ -1,0 +1,29 @@
+@use '../../styles/mixins' as *;
+
+.latest__grid {
+  display: grid;
+  gap: 24px;
+
+  @include sm {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include md {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.latest__featured {
+  @include sm {
+    grid-column: 1 / -1;
+  }
+
+  @include md {
+    grid-column: span 2;
+    grid-row: span 2;
+
+    .post-card--featured {
+      min-height: 100%;
+    }
+  }
+}

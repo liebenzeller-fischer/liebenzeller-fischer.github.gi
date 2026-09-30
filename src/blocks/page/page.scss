@@ -1,0 +1,4 @@
+.page {
+  max-width: calc(760px + 2 * var(--gutter));
+  padding-block: clamp(32px, 5vw, 64px) 0;
+}

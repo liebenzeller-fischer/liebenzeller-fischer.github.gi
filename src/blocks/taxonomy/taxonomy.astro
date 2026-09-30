@@ -1,0 +1,26 @@
+---
+import './taxonomy.scss';
+import PageHeader from '../page-header/page-header.astro';
+
+interface Props {
+  title: string;
+  base: string;
+  items: { slug: string; name: string; count: number }[];
+}
+
+const { title, base, items } = Astro.props;
+---
+
+<PageHeader title={title} eyebrow="Übersicht" />
+<section class="container taxonomy">
+  <ul class="taxonomy__list">
+    {items.map((t) => (
+      <li>
+        <a href={`/${base}/${t.slug}/`}>
+          <span>{t.name}</span>
+          <small>{t.count}</small>
+        </a>
+      </li>
+    ))}
+  </ul>
+</section>

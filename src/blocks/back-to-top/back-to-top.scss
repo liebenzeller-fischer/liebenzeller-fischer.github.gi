@@ -1,0 +1,39 @@
+.back-to-top {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--forest-800);
+  color: #fff;
+  box-shadow: var(--shadow);
+  text-decoration: none;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility .3s, background .2s;
+
+  @media (min-width: 900px) {
+    right: 28px;
+    bottom: 28px;
+  }
+
+  &:hover {
+    background: var(--river-600);
+
+    svg {
+      transform: translateY(-2px);
+    }
+  }
+
+  svg {
+    transition: transform .25s var(--ease);
+  }
+
+  &.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+  }
+}

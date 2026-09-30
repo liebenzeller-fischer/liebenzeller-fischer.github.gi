@@ -1,0 +1,17 @@
+---
+// Feste Seiten: Über uns, Gewässer, Tageskarten, Kontakt, Impressum, Datenschutz
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Page from '../blocks/page/page.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages', ({ data }) => !data.draft);
+  return pages.map((page) => ({ params: { page: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+---
+
+<Base title={page.data.title} description={page.data.description} image={page.data.image}>
+  <Page page={page} />
+</Base>

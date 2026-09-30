@@ -1,0 +1,32 @@
+---
+import './post-card.scss';
+import Icon from '../icon/icon.astro';
+import { asset, dateLong, postUrl, type Post } from '../../lib/site';
+
+interface Props {
+  post: Post;
+  /** große Kachel mit Text über dem Bild */
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+const { title, image, date, description, tags } = post.data;
+---
+
+<article class:list={['post-card', { 'post-card--featured': featured }]}>
+  <div class="post-card__media">
+    <img src={asset(image)} alt="" loading="lazy" decoding="async" />
+  </div>
+  <div class="post-card__body">
+    <div class="post-card__meta">
+      <Icon name="calendar" size={15} />
+      <time datetime={date.toISOString().slice(0, 10)}>{dateLong(date)}</time>
+      {tags[0] && <span class="post-card__tag">{tags[0]}</span>}
+    </div>
+    <h3 class="post-card__title">
+      <a href={postUrl(post)}>{title}</a>
+    </h3>
+    {description && <p class="post-card__excerpt">{description}</p>}
+    <span class="post-card__more" aria-hidden="true">Weiterlesen <Icon name="arrow" size={16} /></span>
+  </div>
+</article>

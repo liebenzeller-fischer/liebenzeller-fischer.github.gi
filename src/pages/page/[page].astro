@@ -1,0 +1,11 @@
+---
+// Alte Hugo-URLs /page/n/ → Beitragsliste /post/page/n/
+import { getPosts, paginate } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return paginate(await getPosts(), '/').map(({ info }) => ({ params: { page: String(info.current) } }));
+}
+
+const n = Number(Astro.params.page);
+return Astro.redirect(n === 1 ? '/post/' : `/post/page/${n}/`, 301);
+---

@@ -1,0 +1,55 @@
+---
+import './waters.scss';
+import Icon from '../icon/icon.astro';
+
+const WATERS = [
+  {
+    id: 'nagold',
+    name: 'Nagold',
+    kind: 'Fließgewässer · ca. 2 km',
+    image: '/images/nagold.jpg',
+    alt: 'Fliegenfischer in der Nagold',
+    text: 'Äschen- und Barbenregion mit sich selbst reproduzierenden Äschen, kräftigen Döbeln und Barben. Den Bachforellenbestand stützen wir mit Fischen aus dem heimischen Einzugsgebiet.',
+    fish: ['Äsche', 'Bachforelle', 'Barbe', 'Döbel'],
+  },
+  {
+    id: 'stadtsee',
+    name: 'Stadtsee',
+    kind: 'Stillgewässer · Ortsmitte',
+    image: '/images/design/stadtsee.jpg',
+    alt: 'Der Stadtsee in Bad Liebenzell im Winter',
+    text: 'Mitten in Bad Liebenzell, gespeist vom Lengenbach. Mit Zanderbesatz, Totholz und Seerosen bauen wir hier einen natürlichen, selbsterhaltenden Bestand auf.',
+    fish: ['Zander', 'Forelle', 'Rotauge', 'Rotfeder'],
+  },
+];
+---
+
+<section class="section waters">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Unsere Gewässer</p>
+        <h2>Zwei Reviere, ein Ziel: <em>gesunder Fischbestand</em></h2>
+      </div>
+      <a class="link-arrow" href="/gewaesser/">Mehr zu den Gewässern <Icon name="arrow" size={18} /></a>
+    </div>
+
+    <div class="waters__grid">
+      {WATERS.map((w) => (
+        <a class="water" href={`/gewaesser/#${w.id}`}>
+          <div class="water__media">
+            <img src={w.image} alt={w.alt} loading="lazy" decoding="async" />
+          </div>
+          <div class="water__body">
+            <p class="water__kind"><Icon name="wave" size={16} /> {w.kind}</p>
+            <h3 class="water__name">{w.name}</h3>
+            <p class="water__text">{w.text}</p>
+            <ul class="chips" aria-label="Fischarten">
+              {w.fish.map((f) => <li><span class="chip">{f}</span></li>)}
+            </ul>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

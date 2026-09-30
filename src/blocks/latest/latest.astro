@@ -1,0 +1,30 @@
+---
+import './latest.scss';
+import PostCard from '../post-card/post-card.astro';
+import Icon from '../icon/icon.astro';
+import type { Post } from '../../lib/site';
+
+interface Props {
+  posts: Post[];
+}
+
+const [featured, ...rest] = Astro.props.posts;
+---
+
+<section class="section latest" id="aktuelles">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Aktuelles</p>
+        <h2>Neues vom Wasser</h2>
+        <p>Besatz, Hege und Gewässerpflege – was wir an Nagold und Stadtsee das Jahr über anpacken.</p>
+      </div>
+      <a class="link-arrow" href="/post/">Alle Beiträge <Icon name="arrow" size={18} /></a>
+    </div>
+
+    <div class="latest__grid">
+      {featured && <div class="latest__featured"><PostCard post={featured} featured /></div>}
+      {rest.map((post) => <PostCard post={post} />)}
+    </div>
+  </div>
+</section>

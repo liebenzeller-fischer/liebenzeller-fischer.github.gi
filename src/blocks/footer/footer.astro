@@ -1,0 +1,43 @@
+---
+import './footer.scss';
+import Icon from '../icon/icon.astro';
+import { SITE, MENU } from '../../lib/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <svg class="site-footer__wave" viewBox="0 0 1440 80" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40c120-26 240-26 360 0s240 26 360 0 240-26 360 0 240 26 360 0v40H0z" />
+  </svg>
+
+  <div class="container site-footer__grid">
+    <div class="site-footer__about">
+      <img class="site-footer__logo" src="/images/design/logo-light.png" alt={SITE.title} width="168" height="56" loading="lazy" />
+      <p>Fliegenfischen, Hege und Gewässerschutz an Nagold und Stadtsee – seit {SITE.founded} in Bad Liebenzell.</p>
+    </div>
+
+    <div>
+      <h2 class="site-footer__title">Verein</h2>
+      <ul class="site-footer__links">
+        {MENU.map((item) => <li><a href={item.url}>{item.name}</a></li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="site-footer__title">Kontakt</h2>
+      <ul class="site-footer__links site-footer__contact">
+        <li><Icon name="pin" size={18} /><span>Bergstraße 30/1<br />75399 Unterreichenbach</span></li>
+        <li><Icon name="mail" size={18} /><span>{SITE.email}</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <span>© {year} {SITE.title}</span>
+    <nav aria-label="Rechtliches">
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/">Datenschutz</a>
+    </nav>
+  </div>
+</footer>

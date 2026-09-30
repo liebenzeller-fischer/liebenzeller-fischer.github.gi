@@ -1,0 +1,73 @@
+---
+// Ab und zu schwimmen blasse Fische durch den Seitenhintergrund:
+// Forelle, Äsche und Barbe. Das Script klont die Vorlagen.
+import './fish-swim.scss';
+---
+
+<div class="fish-swim" aria-hidden="true" data-fish-swim></div>
+
+<template id="fish-swim-template">
+  <!-- Forelle: gedrungen, getupft, runde Schwanzflosse -->
+  <div class="fish-swim__fish fish-swim__fish--forelle" data-species="forelle">
+    <div class="fish-swim__bob">
+      <svg class="fish-swim__svg" viewBox="0 0 120 50">
+        <g class="fish-swim__tail">
+          <path d="M24 25 4 9c3 5 4.5 10.5 4.5 16S7 36 4 41z" />
+        </g>
+        <path class="fish-swim__fin" d="M50 11c5-7 15-9 22-6l-4 7z" />
+        <path class="fish-swim__fin" d="M58 36c3 5 9 7 13 6l-3-6z" />
+        <path class="fish-swim__body" d="M22 25C34 9 72 5 100 17c7 3 12 5.5 12 8s-5 5-12 8C72 45 34 41 22 25z" />
+        <g class="fish-swim__marks">
+          <circle cx="42" cy="18" r="1.6" />
+          <circle cx="52" cy="15" r="1.4" />
+          <circle cx="60" cy="19" r="1.7" />
+          <circle cx="69" cy="15" r="1.3" />
+          <circle cx="78" cy="18.5" r="1.4" />
+          <circle cx="48" cy="28" r="1.2" />
+          <circle cx="64" cy="27" r="1.3" />
+        </g>
+        <circle class="fish-swim__eye" cx="101" cy="22" r="2.2" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Äsche: schlank, große Rückenflosse ("Fahne"), gegabelte Schwanzflosse -->
+  <div class="fish-swim__fish fish-swim__fish--aesche" data-species="aesche">
+    <div class="fish-swim__bob">
+      <svg class="fish-swim__svg" viewBox="0 0 120 50">
+        <g class="fish-swim__tail">
+          <path d="M26 26 5 12l7 14-7 14z" />
+        </g>
+        <path class="fish-swim__fin fish-swim__flag" d="M38 20C36 2 68-8 90 12l-6 5C70 12 52 13 40 21z" />
+        <path class="fish-swim__fin" d="M60 33c2 5 7 7 11 7l-2-6z" />
+        <path class="fish-swim__body" d="M24 26c12-9 44-12 72-8 9 1 15 4 16 7-1 3-7 5-16 7-28 4-60 2-72-6z" />
+        <g class="fish-swim__marks">
+          <circle cx="80" cy="21" r="1" />
+          <circle cx="86" cy="23" r="1" />
+          <circle cx="76" cy="25" r=".9" />
+        </g>
+        <circle class="fish-swim__eye" cx="103" cy="24" r="2" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Barbe: lang gestreckt, gewölbter Rücken, spitze Schnauze mit Barteln -->
+  <div class="fish-swim__fish fish-swim__fish--barbe" data-species="barbe">
+    <div class="fish-swim__bob">
+      <svg class="fish-swim__svg" viewBox="0 0 120 50">
+        <g class="fish-swim__tail">
+          <path d="M24 27 4 13l8 14-8 14z" />
+        </g>
+        <path class="fish-swim__fin" d="M56 15l9-11 6 12z" />
+        <path class="fish-swim__fin" d="M62 35l6 7 5-6z" />
+        <path class="fish-swim__body" d="M22 27c12-13 50-17 78-8 8 3 13 6 15 9-3 2-9 3-16 3-28 5-62 6-77-4z" />
+        <path class="fish-swim__barbels" d="M111 30l2 6M107 31l1 6M103 31l-1 5" />
+        <circle class="fish-swim__eye" cx="103" cy="24" r="1.8" />
+      </svg>
+    </div>
+  </div>
+</template>
+
+<script>
+  import './fish-swim.js';
+</script>

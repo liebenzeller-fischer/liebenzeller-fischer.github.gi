@@ -1,0 +1,27 @@
+{
+  "name": "liebenzeller-fischer",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/inter": "^5.3.0",
+    "astro": "^7.3.5",
+    "fuse.js": "^7.5.0",
+    "mark.js": "^8.11.1",
+    "sass": "^1.105.1"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}

@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../blocks/page-header/page-header.astro';
+import Icon from '../blocks/icon/icon.astro';
+---
+
+<Base title="Seite nicht gefunden">
+  <PageHeader
+    title="Hier beißt nichts an."
+    eyebrow="Fehler 404"
+    intro="Diese Seite gibt es nicht (mehr). Vielleicht hilft die Startseite oder die Suche weiter."
+  >
+    <div slot="after" class="page-header__actions">
+      <a class="btn btn-dark" href="/">Zur Startseite <Icon name="arrow" size={18} /></a>
+      <a class="btn btn-outline" href="/search/">Suche</a>
+    </div>
+  </PageHeader>
+</Base>

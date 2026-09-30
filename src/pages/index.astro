@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../blocks/hero/hero.astro';
+import Facts from '../blocks/facts/facts.astro';
+import Latest from '../blocks/latest/latest.astro';
+import Waters from '../blocks/waters/waters.astro';
+import Cta from '../blocks/cta/cta.astro';
+import { SITE, getPosts } from '../lib/site';
+
+const posts = (await getPosts()).slice(0, 6);
+---
+
+<Base title={SITE.title} description="Fliegenfischen an der Nagold und am Stadtsee: der Fischerverein Bad Liebenzell e.V. – Gewässer, Besatz, Tageskarten und Mitgliedschaft.">
+  <Hero />
+  <Facts />
+  <Latest posts={posts} />
+  <Waters />
+  <Cta />
+</Base>

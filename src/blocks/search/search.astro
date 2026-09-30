@@ -1,0 +1,24 @@
+---
+import './search.scss';
+import '../post-card/post-card.scss';
+import PageHeader from '../page-header/page-header.astro';
+import Icon from '../icon/icon.astro';
+---
+
+<PageHeader title="Suche" eyebrow="Beiträge durchsuchen">
+  <form slot="after" class="search-form" action="/search/" role="search">
+    <label class="visually-hidden" for="search-input">Suchbegriff</label>
+    <Icon name="search" size={22} />
+    <input id="search-input" name="s" type="search" placeholder="z. B. Zander, Besatz, Nagold …" autocomplete="off" />
+    <button class="btn btn-dark" type="submit">Suchen</button>
+  </form>
+</PageHeader>
+
+<section class="container search-results">
+  <p class="search-results__status" data-search-status aria-live="polite"></p>
+  <div class="search-results__grid" data-search-results></div>
+</section>
+
+<script>
+  import './search.js';
+</script>

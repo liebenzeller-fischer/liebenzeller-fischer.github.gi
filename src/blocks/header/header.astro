@@ -1,0 +1,41 @@
+---
+import './header.scss';
+import Icon from '../icon/icon.astro';
+import { SITE, MENU } from '../../lib/site';
+
+const path = Astro.url.pathname;
+const isActive = (url: string) => path === url || (url !== '/' && path.startsWith(url));
+---
+
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href="/" aria-label={`${SITE.title} – Startseite`}>
+      <img src="/images/design/logo-dark.png" alt="" width="140" height="47" />
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="Hauptmenü">
+      <ul class="site-nav__list">
+        {MENU.map((item) => (
+          <li>
+            <a class:list={['site-nav__link', { 'is-active': isActive(item.url) }]} href={item.url} aria-current={isActive(item.url) ? 'page' : undefined}>
+              {item.name}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a class="btn btn-dark site-nav__cta" href="/kontakt/#mitgliedschaft">Mitglied werden</a>
+    </nav>
+
+    <div class="site-header__tools">
+      <a class="site-header__icon" href="/search/" aria-label="Suche"><Icon name="search" /></a>
+      <button class="site-header__icon site-header__burger" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle>
+        <span class="visually-hidden">Menü</span>
+        <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  import './header.js';
+</script>

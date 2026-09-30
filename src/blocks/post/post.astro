@@ -1,0 +1,63 @@
+---
+import './post.scss';
+import { render } from 'astro:content';
+import Content from '../content/content.astro';
+import Icon from '../icon/icon.astro';
+import { asset, dateLong, postUrl, slugify, type Post } from '../../lib/site';
+
+interface Props {
+  post: Post;
+  prev?: Post;
+  next?: Post;
+}
+
+const { post, prev, next } = Astro.props;
+const { title, image, date, tags, description } = post.data;
+const { Content: Body } = await render(post);
+---
+
+<article class="post">
+  <header class="post__hero">
+    <div class="post__hero-media">
+      <img src={asset(image)} alt="" fetchpriority="high" />
+    </div>
+    <div class="container post__hero-content">
+      <a class="post__back" href="/post/"><Icon name="arrow-left" size={16} /> Aktuelles</a>
+      <h1 class="post__title">{title}</h1>
+      <div class="post__meta">
+        <span><Icon name="calendar" size={16} /> <time datetime={date.toISOString().slice(0, 10)}>{dateLong(date)}</time></span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container post__layout">
+    {description && <p class="post__lead">{description}</p>}
+    <Content><Body /></Content>
+
+    {tags.length > 0 && (
+      <footer class="post__tags">
+        <span>Themen</span>
+        <ul class="chips">
+          {tags.map((tag) => <li><a class="chip" href={`/tags/${slugify(tag)}/`}>{tag}</a></li>)}
+        </ul>
+      </footer>
+    )}
+  </div>
+
+  {(prev || next) && (
+    <nav class="container post__nav" aria-label="Weitere Beiträge">
+      {prev ? (
+        <a class="post__nav-link" href={postUrl(prev)}>
+          <span><Icon name="arrow-left" size={16} /> Neuer</span>
+          <strong>{prev.data.title}</strong>
+        </a>
+      ) : <span />}
+      {next && (
+        <a class="post__nav-link post__nav-link--next" href={postUrl(next)}>
+          <span>Älter <Icon name="arrow" size={16} /></span>
+          <strong>{next.data.title}</strong>
+        </a>
+      )}
+    </nav>
+  )}
+</article>

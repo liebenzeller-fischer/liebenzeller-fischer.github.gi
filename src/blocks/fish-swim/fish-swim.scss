@@ -1,0 +1,83 @@
+// Ebene über den Flächen-Hintergründen (z. B. Sand bei „Unsere Gewässer“),
+// aber unter Texten, Karten und Fotos – die liegen in .container mit z-index 1.
+.fish-swim {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  &__fish {
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+
+    // Farbe je Art (sehr blass, siehe --alpha)
+    &--forelle { --fish: var(--river-600); --mark: var(--forest-900); }
+    &--aesche  { --fish: #56707a; --mark: #2b3a40; }
+    &--barbe   { --fish: #7a7454; --mark: #3a3726; }
+  }
+
+  // sanftes Auf und Ab
+  &__bob {
+    animation: fish-swim-bob var(--bob, 3.2s) ease-in-out infinite alternate;
+  }
+
+  &__svg {
+    display: block;
+    width: var(--size, 90px);
+    height: auto;
+    overflow: visible;
+    opacity: var(--alpha, .16);
+  }
+
+  // nach links schwimmend spiegeln
+  &__fish.is-left &__svg {
+    transform: scaleX(-1);
+  }
+
+  &__body,
+  &__fin,
+  &__tail {
+    fill: var(--fish);
+  }
+
+  &__flag {
+    opacity: .85;
+  }
+
+  &__marks circle,
+  &__eye {
+    fill: var(--mark);
+  }
+
+  &__barbels {
+    fill: none;
+    stroke: var(--fish);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+  }
+
+  &__tail {
+    transform-box: view-box;
+    transform-origin: 24px 26px;
+    animation: fish-swim-tail var(--tail, .7s) ease-in-out infinite alternate;
+  }
+}
+
+@keyframes fish-swim-bob {
+  from { transform: translateY(-6px) rotate(-2deg); }
+  to { transform: translateY(6px) rotate(2deg); }
+}
+
+@keyframes fish-swim-tail {
+  from { transform: rotate(-14deg); }
+  to { transform: rotate(14deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fish-swim {
+    display: none;
+  }
+}
