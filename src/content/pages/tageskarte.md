@@ -18,6 +18,6 @@ Zur Orientierung (laut Tourist-Information Bad Liebenzell, Angaben ohne Gewähr)
 
 Für aktuelle Preise, Verfügbarkeit und die offiziellen Informationen rund um das Fliegenfischen in Bad Liebenzell (inkl. Fischgewässer I, II, III) ist die Tourist-Information Bad Liebenzell die richtige Anlaufstelle:
 
-**[=> Alle Infos & Tageskarten](https://www.tourismus-bad-liebenzell.de/aktivitaeten/fliegenfischen/)**
+**<a href="https://www.tourismus-bad-liebenzell.de/aktivitaeten/fliegenfischen/" target="_blank" rel="noopener noreferrer">=&gt; Alle Infos &amp; Tageskarten</a>**
 
 Dort findest du auch die passenden Ansprechpartner (E-Mail/Telefon), falls du Fragen zum Erwerb oder zur Verfügbarkeit der Karten hast.
