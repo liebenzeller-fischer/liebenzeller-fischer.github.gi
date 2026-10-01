@@ -1,0 +1,35 @@
+// Seitennavigation unter Beitragslisten
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+
+  .page-link {
+    display: grid;
+    place-items: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--ink-soft);
+    transition: background .2s, color .2s, border-color .2s;
+
+    &:hover {
+      border-color: var(--forest-800);
+      color: var(--ink);
+    }
+  }
+
+  .active .page-link {
+    border-color: var(--forest-800);
+    background: var(--forest-800);
+    color: #fff;
+  }
+}

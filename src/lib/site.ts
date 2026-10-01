@@ -78,3 +78,15 @@ export const plain = (md = '') =>
     .replace(/[#*_>`]/g, '')
     .replace(/\s+/g, ' ')
     .trim();
+
+/** Seitenzahlen für die Seitennavigation: max. 2 links/rechts der aktuellen (wie früher bei Hugo). */
+export function pageNumbers(info: PageInfo) {
+  const adjacent = 2;
+  const maxLinks = adjacent * 2 + 1;
+  return Array.from({ length: info.total }, (_, i) => i + 1).filter((n) => {
+    if (info.total <= maxLinks) return true;
+    if (info.current <= adjacent + 1) return n <= maxLinks;
+    if (info.current >= info.total - adjacent) return n > info.total - maxLinks;
+    return Math.abs(n - info.current) <= adjacent;
+  });
+}

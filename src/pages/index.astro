@@ -1,19 +1,173 @@
 ---
-import Base from '../layouts/Base.astro';
-import Hero from '../blocks/hero/hero.astro';
-import Facts from '../blocks/facts/facts.astro';
-import Latest from '../blocks/latest/latest.astro';
-import Waters from '../blocks/waters/waters.astro';
-import Cta from '../blocks/cta/cta.astro';
-import { SITE, getPosts } from '../lib/site';
+// Startseite: Titelbild, Zahlen, Aktuelles, Gewässer, Mitglied werden / Tageskarten
+// Styles: styles/index.scss
+import Layout from '../layouts/layout.astro';
+import '../styles/index.scss';
+import { SITE, asset, dateLong, getPosts, postUrl } from '../lib/site';
+import { icon } from '../lib/icons';
 
 const posts = (await getPosts()).slice(0, 6);
+
+const FACTS = [
+  { value: '≈ 2 km', label: 'Nagoldstrecke in der Äschen- und Barbenregion' },
+  { value: 'II–III', label: 'Gewässergüte, Saprobienindex 2,1' },
+  { value: '1994', label: 'von neun Liebenzellern gegründet' },
+  { value: '2', label: 'Gewässer: Nagold und Stadtsee' },
+];
+
+const WATERS = [
+  {
+    id: 'nagold',
+    name: 'Nagold',
+    kind: 'Fließgewässer · ca. 2 km',
+    image: '/images/nagold.jpg',
+    alt: 'Fliegenfischer in der Nagold',
+    text: 'Äschen- und Barbenregion mit sich selbst reproduzierenden Äschen, kräftigen Döbeln und Barben. Den Bachforellenbestand stützen wir mit Fischen aus dem heimischen Einzugsgebiet.',
+    fish: ['Äsche', 'Bachforelle', 'Barbe', 'Döbel'],
+  },
+  {
+    id: 'stadtsee',
+    name: 'Stadtsee',
+    kind: 'Stillgewässer · Ortsmitte',
+    image: '/images/design/stadtsee.jpg',
+    alt: 'Der Stadtsee in Bad Liebenzell im Winter',
+    text: 'Mitten in Bad Liebenzell, gespeist vom Lengenbach. Mit Zanderbesatz, Totholz und Seerosen bauen wir hier einen natürlichen, selbsterhaltenden Bestand auf.',
+    fish: ['Zander', 'Forelle', 'Rotauge', 'Rotfeder'],
+  },
+];
 ---
 
-<Base title={SITE.title} description="Fliegenfischen an der Nagold und am Stadtsee: der Fischerverein Bad Liebenzell e.V. – Gewässer, Besatz, Tageskarten und Mitgliedschaft.">
-  <Hero />
-  <Facts />
-  <Latest posts={posts} />
-  <Waters />
-  <Cta />
-</Base>
+<Layout title={SITE.title} description="Fliegenfischen an der Nagold und am Stadtsee: der Fischerverein Bad Liebenzell e.V. – Gewässer, Besatz, Tageskarten und Mitgliedschaft.">
+  <!-- ========== Titelbild ========== -->
+  <section class="hero">
+    <div class="hero__media">
+      <img src="/images/design/hero-nagold.jpg" alt="Die Nagold bei Bad Liebenzell im Frühling" width="1920" height="933" fetchpriority="high" />
+    </div>
+
+    <div class="container hero__content">
+      <p class="eyebrow hero__eyebrow">Seit {SITE.founded} · Bad Liebenzell</p>
+      <h1 class="hero__title">Fliegenfischen <em>an der Nagold</em></h1>
+      <p class="hero__lead">
+        Wir hegen rund zwei Kilometer Äschen- und Barbenregion und den Stadtsee mitten in Bad Liebenzell –
+        mit Besatz aus dem heimischen Einzugsgebiet, regelmäßigen Gewässeranalysen und viel Herzblut.
+      </p>
+      <div class="hero__actions">
+        <a class="btn btn-primary" href="/gewaesser/">Unsere Gewässer <Fragment set:html={icon('arrow', 18)} /></a>
+        <a class="btn btn-ghost" href="/tageskarte/">Tageskarten</a>
+      </div>
+    </div>
+
+    <a class="hero__scroll" href="#aktuelles" aria-label="Weiter zu Aktuelles">
+      <span></span>
+    </a>
+  </section>
+
+  <!-- ========== Zahlen ========== -->
+  <section class="facts" aria-label="Der Verein in Zahlen">
+    <div class="container">
+      <dl class="facts__list">
+        {FACTS.map((f) => (
+          <div class="facts__item">
+            <dt>{f.value}</dt>
+            <dd>{f.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- ========== Aktuelles: neuester Beitrag groß, die nächsten fünf als Kacheln ========== -->
+  <section class="section latest" id="aktuelles">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Aktuelles</p>
+          <h2>Neues vom Wasser</h2>
+          <p>Besatz, Hege und Gewässerpflege – was wir an Nagold und Stadtsee das Jahr über anpacken.</p>
+        </div>
+        <a class="link-arrow" href="/post/">Alle Beiträge <Fragment set:html={icon('arrow', 18)} /></a>
+      </div>
+
+      <div class="latest__grid">
+        {posts.map((post, i) => {
+          const card = (
+            <article class:list={['post-card', { 'post-card--featured': i === 0 }]}>
+              <div class="post-card__media">
+                <img src={asset(post.data.image)} alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="post-card__body">
+                <div class="post-card__meta">
+                  <Fragment set:html={icon('calendar', 15)} />
+                  <time datetime={post.data.date.toISOString().slice(0, 10)}>{dateLong(post.data.date)}</time>
+                  {post.data.tags[0] && <span class="post-card__tag">{post.data.tags[0]}</span>}
+                </div>
+                <h3 class="post-card__title">
+                  <a href={postUrl(post)}>{post.data.title}</a>
+                </h3>
+                {post.data.description && <p class="post-card__excerpt">{post.data.description}</p>}
+                <span class="post-card__more" aria-hidden="true">Weiterlesen <Fragment set:html={icon('arrow', 16)} /></span>
+              </div>
+            </article>
+          );
+          return i === 0 ? <div class="latest__featured">{card}</div> : card;
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Unsere Gewässer ========== -->
+  <section class="section waters">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Unsere Gewässer</p>
+          <h2>Zwei Reviere, ein Ziel: <em>gesunder Fischbestand</em></h2>
+        </div>
+        <a class="link-arrow" href="/gewaesser/">Mehr zu den Gewässern <Fragment set:html={icon('arrow', 18)} /></a>
+      </div>
+
+      <div class="waters__grid">
+        {WATERS.map((w) => (
+          <a class="water" href={`/gewaesser/#${w.id}`}>
+            <div class="water__media">
+              <img src={w.image} alt={w.alt} loading="lazy" decoding="async" />
+            </div>
+            <div class="water__body">
+              <p class="water__kind"><Fragment set:html={icon('wave', 16)} /> {w.kind}</p>
+              <h3 class="water__name">{w.name}</h3>
+              <p class="water__text">{w.text}</p>
+              <ul class="chips" aria-label="Fischarten">
+                {w.fish.map((f) => <li><span class="chip">{f}</span></li>)}
+              </ul>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Mitglied werden / Tageskarten ========== -->
+  <section class="section cta">
+    <div class="container cta__grid">
+      <div class="cta__card cta__card--dark">
+        <Fragment set:html={icon('users', 32)} />
+        <h2>Mitglied werden</h2>
+        <p>
+          An der Nagold wird überwiegend mit der Fliege gefischt. Du bist schon Fliegenfischer oder willst es
+          werden? Wir helfen gern beim Einstieg – schreib uns mit einer kurzen Vorstellung.
+        </p>
+        <a class="btn btn-primary" href="/kontakt/#mitgliedschaft">Kontakt aufnehmen <Fragment set:html={icon('arrow', 18)} /></a>
+      </div>
+
+      <div class="cta__card">
+        <Fragment set:html={icon('ticket', 32)} />
+        <h2>Tageskarten</h2>
+        <p>
+          Gastkarten für das Fliegenfischen in Bad Liebenzell gibt es bei der Tourist-Information –
+          inklusive Genussgutschein für die örtliche Gastronomie.
+        </p>
+        <a class="btn btn-outline" href="/tageskarte/">Infos zu Tageskarten <Fragment set:html={icon('arrow', 18)} /></a>
+      </div>
+    </div>
+  </section>
+</Layout>

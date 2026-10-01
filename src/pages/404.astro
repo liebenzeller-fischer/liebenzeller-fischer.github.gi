@@ -1,18 +1,20 @@
 ---
-import Base from '../layouts/Base.astro';
-import PageHeader from '../blocks/page-header/page-header.astro';
-import Icon from '../blocks/icon/icon.astro';
+// Fehlerseite. Styles: styles/404.scss
+import Layout from '../layouts/layout.astro';
+import '../styles/404.scss';
+import { icon } from '../lib/icons';
 ---
 
-<Base title="Seite nicht gefunden">
-  <PageHeader
-    title="Hier beißt nichts an."
-    eyebrow="Fehler 404"
-    intro="Diese Seite gibt es nicht (mehr). Vielleicht hilft die Startseite oder die Suche weiter."
-  >
-    <div slot="after" class="page-header__actions">
-      <a class="btn btn-dark" href="/">Zur Startseite <Icon name="arrow" size={18} /></a>
-      <a class="btn btn-outline" href="/search/">Suche</a>
+<Layout title="Seite nicht gefunden">
+  <header class="page-header">
+    <div class="container page-header__content">
+      <p class="eyebrow">Fehler 404</p>
+      <h1 class="page-header__title">Hier beißt nichts an.</h1>
+      <p class="page-header__intro">Diese Seite gibt es nicht (mehr). Vielleicht hilft die Startseite oder die Suche weiter.</p>
+      <div class="page-header__actions">
+        <a class="btn btn-dark" href="/">Zur Startseite <Fragment set:html={icon('arrow', 18)} /></a>
+        <a class="btn btn-outline" href="/search/">Suche</a>
+      </div>
     </div>
-  </PageHeader>
-</Base>
+  </header>
+</Layout>

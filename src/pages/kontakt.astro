@@ -1,0 +1,30 @@
+---
+// Seite „Kontakt“ (/kontakt/). Text: content/pages/kontakt.md · Styles: styles/kontakt.scss
+import { getEntry, render } from 'astro:content';
+import Layout from '../layouts/layout.astro';
+import '../styles/kontakt.scss';
+import { asset } from '../lib/site';
+
+const page = (await getEntry('pages', 'kontakt'))!;
+const { title, description, image, eyebrow, intro, hero } = page.data;
+const { Content } = await render(page);
+---
+
+<Layout title={title} description={description} image={image}>
+  <header class:list={['page-header', { 'page-header--image': hero }]}>
+    {hero && (
+      <div class="page-header__media">
+        <img src={asset(hero)} alt="" fetchpriority="high" />
+      </div>
+    )}
+    <div class="container page-header__content">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1 class="page-header__title">{title}</h1>
+      {intro && <p class="page-header__intro">{intro}</p>}
+    </div>
+  </header>
+
+  <div class="container page">
+    <div class="content"><Content /></div>
+  </div>
+</Layout>

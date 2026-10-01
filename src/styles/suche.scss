@@ -1,0 +1,75 @@
+// Suche (/search/)
+@use 'teile/mixins' as *;
+@use 'teile/seitenkopf';
+@use 'teile/kachel';
+
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 640px;
+  margin-top: 32px;
+  padding: 8px 8px 8px 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .2s, border-color .2s;
+
+  &:focus-within {
+    border-color: var(--river-500);
+    box-shadow: 0 0 0 4px var(--river-100);
+  }
+
+  > svg {
+    flex: none;
+    color: var(--muted);
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: none;
+    font: inherit;
+    font-size: 1.05rem;
+    color: var(--ink);
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  .btn {
+    padding: 12px 20px;
+  }
+}
+
+.search-results {
+  padding-bottom: clamp(56px, 8vw, 96px);
+
+  &__status {
+    margin-bottom: 24px;
+    color: var(--muted);
+  }
+
+  &__grid {
+    display: grid;
+    gap: 24px;
+
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  mark {
+    border-radius: 3px;
+    box-shadow: 0 0 0 2px #f3dfb8;
+    background: #f3dfb8;
+    color: inherit;
+  }
+}

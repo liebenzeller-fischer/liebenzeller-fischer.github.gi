@@ -13,31 +13,47 @@ npm run build    # fertige Seite in dist/
 
 ## Aufbau
 
+Alles ist nach den Seiten benannt: HTML in `src/pages/<seite>.astro`, Styles in `src/styles/<seite>.scss`.
+
 ```
 src/
-  blocks/<name>/        ein Ordner pro Bauteil, HTML/SCSS/JS immer getrennt
-    <name>.astro        HTML-Markup
-    <name>.scss         Styles nur für diesen Block
-    <name>.js           Verhalten (nur wenn nötig)
-  content/posts/        Beiträge (Markdown)
-  content/pages/        feste Seiten: Über uns, Gewässer, Tageskarten, Kontakt, Impressum, Datenschutz
-                        (optional im Kopf: hero, eyebrow, intro)
-  layouts/Base.astro    Grundgerüst jeder Seite (Kopf, Header, Footer)
-  pages/                URLs – setzen nur Blöcke zusammen
-  styles/               globale Grundlagen (Variablen, Mixins, Schrift, Buttons)
-  lib/                  Hilfsfunktionen (Beiträge laden, Seiten aufteilen, Tags)
-static/                 Bilder (wird 1:1 ausgeliefert), images/design/ = Bilder fürs Layout
+  layouts/layout.astro   Grundgerüst jeder Seite: <head>, Kopf, Fuß, Hintergrund-Fische, Nach-oben-Button
+  pages/                 HTML je Seite, Dateiname = URL
+    index.astro            /             Startseite
+    ueber-uns.astro        /ueber-uns/
+    gewaesser.astro        /gewaesser/
+    tageskarte.astro       /tageskarte/
+    kontakt.astro          /kontakt/
+    impressum.astro        /impressum/
+    datenschutz.astro      /datenschutz/
+    post/[...seite].astro  /post/, /post/page/2/ …   Beitragsliste „Aktuelles“
+    post/[beitrag].astro   /post/<name>/             einzelner Beitrag
+    tags/…, categories/…   Themen und Kategorien
+    search.astro           /search/
+    404.astro              Fehlerseite
+  styles/                SCSS, gleich benannt wie die Seiten
+    layout.scss            gilt auf jeder Seite
+    index.scss, ueber-uns.scss, gewaesser.scss, tageskarte.scss, kontakt.scss,
+    impressum.scss, datenschutz.scss, beitraege.scss, beitrag.scss,
+    themen.scss, kategorien.scss, suche.scss, 404.scss
+    teile/                 gemeinsame Teile, die die Seiten-SCSS einbinden
+                           (_tokens Farben/Schriften, _base, _mixins, _seitenkopf,
+                            _inhalt Markdown-Text, _kachel, _liste, _seitenzahlen, _seite)
+  scripts/
+    layout.js              Menü, Fische, Nach-oben-Button (jede Seite)
+    suche.js               Suche
+  content/posts/         Beiträge (Markdown)
+  content/pages/         Texte der festen Seiten (Markdown)
+  lib/                   Hilfsfunktionen (Beiträge laden, Seitenaufteilung, Icons)
+static/                  Bilder (wird 1:1 ausgeliefert), images/design/ = Bilder fürs Layout
 ```
 
-Blöcke:
-
-- Rahmen: `header`, `footer`, `back-to-top` (Nach-oben-Button), `icon` (SVG-Icons), `fish-swim` (Forellen, Äschen und Barben im Hintergrund)
-- Startseite: `hero`, `facts`, `latest`, `waters`, `cta`
-- Beiträge: `blog` (Liste), `post-card` (Kachel), `pagination`, `post` (Einzelbeitrag)
-- Seiten: `page-header`, `page` (feste Seite), `content` (Markdown-Text), `search`, `taxonomy`
-
-Design-Grundlagen (Farben, Schriften, Abstände) stehen als CSS-Variablen in `src/styles/_tokens.scss`.
+Farben, Schriften und Abstände stehen als CSS-Variablen in `src/styles/teile/_tokens.scss`.
 Schriften: Fraunces + Inter, lokal eingebunden über `@fontsource` (keine Anfragen an Google).
+
+Hinweis: Die Beitragskachel steht als HTML in `index.astro`, `post/[...seite].astro`,
+`tags/[...path].astro`, `categories/[...path].astro` und (als JS-Vorlage) in `scripts/suche.js` –
+Änderungen an der Kachel dort überall nachziehen.
 
 ## Neuer Beitrag
 

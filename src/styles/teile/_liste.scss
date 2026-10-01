@@ -1,0 +1,20 @@
+// Raster der Beitragslisten
+@use 'mixins' as *;
+
+.blog {
+  padding-bottom: clamp(56px, 8vw, 96px);
+
+  &__grid {
+    display: grid;
+    gap: 24px;
+
+    @include sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include md {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+  }
+}

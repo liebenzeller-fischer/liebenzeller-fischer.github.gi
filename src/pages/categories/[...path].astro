@@ -1,24 +1,91 @@
 ---
-// /categories/, /categories/<name>/ und /categories/<name>/page/n/
-import Base from '../../layouts/Base.astro';
-import PageHeader from '../../blocks/page-header/page-header.astro';
-import Blog from '../../blocks/blog/blog.astro';
-import Taxonomy from '../../blocks/taxonomy/taxonomy.astro';
+// Kategorien: Übersicht /categories/, Beitragslisten /categories/<name>/ und /categories/<name>/page/n/
+// Styles: styles/kategorien.scss
+import Layout from '../../layouts/layout.astro';
+import '../../styles/kategorien.scss';
+import { asset, dateLong, pageNumbers, postUrl } from '../../lib/site';
 import { taxonomyPaths, type TaxonomyProps } from '../../lib/taxonomy';
+import { icon } from '../../lib/icons';
 
 export const getStaticPaths = () => taxonomyPaths('categories');
 const props = Astro.props as TaxonomyProps;
 ---
 
 {props.kind === 'index' && (
-  <Base title="Kategorien">
-    <Taxonomy title="Kategorien" base="categories" items={props.items} />
-  </Base>
+  <Layout title="Kategorien">
+    <header class="page-header">
+      <div class="container page-header__content">
+        <p class="eyebrow">Übersicht</p>
+        <h1 class="page-header__title">Kategorien</h1>
+      </div>
+    </header>
+
+    <section class="container taxonomy">
+      <ul class="taxonomy__list">
+        {props.items.map((t) => (
+          <li>
+            <a href={`/categories/${t.slug}/`}>
+              <span>{t.name}</span>
+              <small>{t.count}</small>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  </Layout>
 )}
 
 {props.kind === 'term' && (
-  <Base title={props.name}>
-    <PageHeader title={props.name} eyebrow="Kategorie" />
-    <Blog posts={props.posts} info={props.info} />
-  </Base>
+  <Layout title={props.name}>
+    <header class="page-header">
+      <div class="container page-header__content">
+        <p class="eyebrow">Kategorie</p>
+        <h1 class="page-header__title">{props.name}</h1>
+      </div>
+    </header>
+
+    <section class="blog">
+      <div class="container">
+        <div class="blog__grid">
+          {props.posts.map((post) => (
+            <article class="post-card">
+              <div class="post-card__media">
+                <img src={asset(post.data.image)} alt="" loading="lazy" decoding="async" />
+              </div>
+              <div class="post-card__body">
+                <div class="post-card__meta">
+                  <Fragment set:html={icon('calendar', 15)} />
+                  <time datetime={post.data.date.toISOString().slice(0, 10)}>{dateLong(post.data.date)}</time>
+                  {post.data.tags[0] && <span class="post-card__tag">{post.data.tags[0]}</span>}
+                </div>
+                <h3 class="post-card__title">
+                  <a href={postUrl(post)}>{post.data.title}</a>
+                </h3>
+                {post.data.description && <p class="post-card__excerpt">{post.data.description}</p>}
+                <span class="post-card__more" aria-hidden="true">Weiterlesen <Fragment set:html={icon('arrow', 16)} /></span>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {props.info.total > 1 && (
+          <nav aria-label="Seiten">
+            <ul class="pagination">
+              {props.info.current > 1 && (
+                <li class="page-item"><a href={props.info.url(props.info.current - 1)} class="page-link" aria-label="Vorherige Seite"><Fragment set:html={icon('arrow-left', 18)} /></a></li>
+              )}
+              {pageNumbers(props.info).map((n) => (
+                <li class:list={['page-item', { active: n === props.info.current }]}>
+                  <a href={props.info.url(n)} class="page-link" aria-current={n === props.info.current ? 'page' : undefined}>{n}</a>
+                </li>
+              ))}
+              {props.info.current < props.info.total && (
+                <li class="page-item"><a href={props.info.url(props.info.current + 1)} class="page-link" aria-label="Nächste Seite"><Fragment set:html={icon('arrow', 18)} /></a></li>
+              )}
+            </ul>
+          </nav>
+        )}
+      </div>
+    </section>
+  </Layout>
 )}
