@@ -10,10 +10,10 @@ intro: "Neun Liebenzeller, eine Idee: ein eigener Verein für die Fischerei an d
 
 # Geschichte
 
-Am 5. April 1994 trafen sich neun Liebenzeller in der Schindelhütte, um die Gründung des Fischervereins Bad Liebenzell zu beschließen. Der Mitgliedsbeitrag wurde auf 50 DM festgelegt und nach all den notwendigen administrativen Aufgaben, wurde auch noch ein wenig gefeiert. Der Fischerverein war gegründet.
+Am 5. April 1994 trafen sich neun Liebenzeller in der Schindelhütte, um die Gründung des Fischervereins Bad Liebenzell zu beschließen. Der Mitgliedsbeitrag wurde auf 50 DM festgelegt. Nach den notwendigen administrativen Aufgaben wurde auch noch ein wenig gefeiert. Der Fischerverein war gegründet.
 
-Viele Aufgaben mussten verteilt werden, darunter die Prüfung der Gemeinnützigkeit, Information diverser Ämter, Eintragung ins Vereinsregister und zu guter letzt auch Termine für regelmäßige Zusammenkünfte finden. Aber eins fehlte immer noch, ein Gewässer um die Fischerei auch am eigenen Wasser ausüben zu können. 
+Es mussten viele Aufgaben verteilt werden: die Prüfung der Gemeinnützigkeit, die Information diverser Ämter, die Eintragung ins Vereinsregister und schließlich auch die Festlegung von Terminen für regelmäßige Zusammenkünfte. Doch es fehlte noch etwas: ein Gewässer, um die Fischerei auch am eigenen Wasser ausüben zu können.
 
 ![Nagold im Winter](/images/nagold.jpg)
 
-Es sollte noch ziemlich viel Kraft und Ausdauer kosten, bis dann endlich Fischwasser gepachtet werden konnte. Die aktuell von uns bewirtschafteten Gewässer sind [hier](/gewaesser) zu finden.
+Es sollte noch viel Kraft und Ausdauer kosten, bis schließlich Fischwasser gepachtet werden konnte. Die aktuell von uns bewirtschafteten Gewässer sind [hier](/gewaesser) zu finden.
