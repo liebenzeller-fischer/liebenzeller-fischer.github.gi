@@ -7,7 +7,7 @@ categories: ["News"]
 tags: ["Nagold", "Bad Liebenzell", "Besatz"]
 ---
 
-Im Jahr 2026 wurde zur weiteren Stabilisierung unseres Fischbestandes ein an die Nagold angepasstes Besatzmaßnahme mit kleinen Bachforellen und kleinen Äschen durchgeführt.
+Im Jahr 2026 wurde zur weiteren Stabilisierung unseres Fischbestandes eine an die Nagold angepasste Besatzmaßnahme mit kleinen Bachforellen und kleinen Äschen durchgeführt.
 
 Besonders berücksichtigt wurden dabei junge, einjährige Fische, da sie sich in der Regel schnell an die örtlichen Bedingungen anpassen und sich gut in den vorhandenen Bestand einfügen.
 
