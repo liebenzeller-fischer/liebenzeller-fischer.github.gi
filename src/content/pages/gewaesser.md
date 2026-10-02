@@ -14,15 +14,15 @@ Zur Zeit bewirtschaftet der Verein eine zusammenhängende Strecke der Nagold und
 # Nagold
 ## Fischbestand
 
-Die Nagoldstrecke mit ca. 2 km Länge ist der Äschen- und Barbenregion zuzuordnen. Wir freuen uns über die sich selbst reproduzierende Population an Äschen. Leider ist der Bestand dieser wunderbaren Fische im gesamten süddeutschen Raum in den letzten Jahren zunehmend rückläufig. Die Gründe liegen wohl unter anderem in der Zunahme der Kormorane und dem stetigen Anstieg der Wassertemperaturen.
+Die rund zwei Kilometer lange Nagoldstrecke ist der Äschen- und Barbenregion zuzuordnen. Wir freuen uns über die sich selbst reproduzierende Äschenpopulation. Leider ist der Bestand dieser wunderbaren Fische im gesamten süddeutschen Raum in den letzten Jahren rückläufig. Gründe hierfür sind unter anderem die Zunahme der Kormorane und der stetige Anstieg der Wassertemperaturen.
 
-Deutlich besser vermehren sich Döbel (Aitel) und Barben. Unterstützende Besatzmaßnahmen sind erfreulicherweise nicht erforderlich. Wir stützen den wertvollen Bestand der Bachforellen aktiv mit Fischen aus dem heimischen Einzugsgebiet.
+Deutlich besser vermehren sich Döbel (Aitel) und Barben. Erfreulicherweise sind unterstützende Besatzmaßnahmen nicht erforderlich. Den wertvollen Bestand der Bachforellen stützen wir aktiv mit Fischen aus dem heimischen Einzugsgebiet.
 
-Jedes Jahr werden auch zahlreiche Regenbogenforellen gefangen, die wohl in den angrenzenden Revieren beheimatet wurden.
+Jedes Jahr werden auch zahlreiche Regenbogenforellen gefangen, die vermutlich in den angrenzenden Revieren ausgesetzt wurden.
 
 ## Gewässergüte
 
-Regelmäßige aquatische Analysen des Abschnitts, bestätigen uns eine Gewässergüte von II - III (Saprobienindex 2,1). Hiermit befinden wir uns im gehobenen Normalbereich, der für das Land Baden-Württemberg gemessenen Werte über alle Fließgewässer. Dies spiegelt sich auch im über mehrere Jahre gefestigten Bestand einiger Fischarten wieder.
+Regelmäßige aquatische Analysen des Abschnitts bestätigen eine Gewässergüte von II–III (Saprobienindex 2,1). Damit befinden wir uns im gehobenen Normalbereich der für das Land Baden-Württemberg gemessenen Werte über alle Fließgewässer. Dies spiegelt sich auch im über mehrere Jahre gefestigten Bestand einiger Fischarten wider.
 
 Die genauen Analysen inklusiver Bilder der Kleinstlebewesen (Makrozoobenthos), sind im [Thema Biologie](/categories/biologie) zu finden.
 
@@ -36,7 +36,7 @@ Weitere detailierte Informationen über den Wasserstand können auf der [Website
 
 ## Impressionen
 
-Die folgenden Bilder geben einen kleinen Eindruck über die Beschaffung des Abschnitts und seiner oberirdischen Bewohner.
+Die folgenden Bilder vermitteln einen kleinen Eindruck von der Beschaffenheit des Abschnitts und seinen oberirdischen Bewohnern.
 
 ![Nagold im Winter](/images/nagold_winter.jpg)
 
